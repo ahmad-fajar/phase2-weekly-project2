@@ -30,9 +30,9 @@ const UserSchema = new Schema({
   },
   image : {
     type     : String,
-    required : false
+    default  : 'http://used.agwest.com/images/default-image-agwest-thumb.jpg'
   }
 });
 
-const Items = mongoose.model('items', UserSchema);
-module.exports = Items;
+const Item = mongoose.model('items', UserSchema);
+module.exports = Item;
