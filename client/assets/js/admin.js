@@ -8,7 +8,7 @@ let inventory = [
 let app = new Vue({
   el: '#app',
   data: {
-    inventory: inventory,
+    inventory: [],
     search: "",
     name: "",
     price: "",
@@ -21,27 +21,38 @@ let app = new Vue({
   methods: {
     addInventory: function() {
       let self = this;
-      axios.post('', {
+      axios.post('http://localhost:3000/item', {
         name: self.name,
         price: self.price,
         stock: self.stock
       })
-      .then(result => console.log(result))
+      .then(result => self.inventory.push(result.data))
       .catch(err => console.log(err))
     },
-    deleteInventory: function(id) {
-      axios.delete(`/${id}`)
-      .then(result => console.log(result))
+    deleteInventory: function(idx, id) {
+      let self = this;
+      axios.delete(`http://localhost:3000/item/${id}`)
+      .then(result => {
+        console.log("hay");
+        let varr = self.inventory.filter(i => {
+          return i._id != id;
+        })
+        self.inventory = varr;
+      })
       .catch(err => console.log(err))
     },
     updateInventory: function(idx, id) {
       let self = this;
-      axios.put(`/${id}`, {
-        name: self.inventory[idx].name,
-        price: self.inventory[idx].price,
-        stock: self.inventory[idx].stock
+      axios.put(`http://localhost:3000/item/${id}`, {
+        name: self.name,
+        price: self.price,
+        stock: self.stock
       })
-      .then(result => console.log(result))
+      .then(result => {
+        self.inventory[idx].name = self.name;
+        self.inventory[idx].price = self.price;
+        self.inventory[idx].stock = self.stock;
+      })
       .catch(err => console.log(err))
       console.log(idx);
       console.log(id);
@@ -53,11 +64,14 @@ let app = new Vue({
       return this.inventory.filter(i => i.name.match(search));
     }
   },
-  created () {
+  mounted () {
     let self = this;
-    axios.get('')
+    axios.get('http://localhost:3000/item')
     .then(result => {
       console.log(result.data);
+      result.data.forEach(d => {
+        d.quantity = 0;
+      });
       self.inventory = result.data
     })
     .catch(err => console.log(err))

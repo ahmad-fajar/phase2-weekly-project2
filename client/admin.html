@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="assets/materialize/css/materialize.min.css"  media="screen,projection"/>
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/assets/css/admin.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
@@ -16,9 +17,9 @@
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper teal">
-          <a href="#!" class="brand-logo">Logo</a>
+          <a href="#!" class="brand-logo">MokaPedia</a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="badges.html">Components</a></li>
+            <li><a href="badges.html">About</a></li>
           </ul>
         </div>
       </nav>
@@ -45,7 +46,7 @@
               <td>{{ i.stock }}</td>
               <td>
                 <a v-on:click="showEdit = false, showAdd = false, name = i.name, price = i.price, stock = i.stock, editInventoryId = i._id, editInventoryIndex = index" class="btn-floating waves-effect waves-light yellow darken-1" style="margin-right: 8px"><i class="material-icons">edit</i></a>
-                <a v-on:click="deleteInventory(i._id)" class="btn-floating waves-effect waves-light red" style="margin-left: 8px"><i class="material-icons">delete</i></a>
+                <a v-on:click="deleteInventory(index, i._id)" class="btn-floating waves-effect waves-light red" style="margin-left: 8px"><i class="material-icons">delete</i></a>
               </td>
             </tr>
           </tbody>
