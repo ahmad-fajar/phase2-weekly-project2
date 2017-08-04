@@ -6,8 +6,8 @@ const express    = require('express');
 const mongoose   = require('mongoose');
 const path       = require('path');
 
-mongoose.connect('mongodb://localhost/pos');
-// mongoose.connect('mongodb://hacktiv8:hacktiv8Super@cluster0-shard-00-00-remkh.mongodb.net:27017,cluster0-shard-00-01-remkh.mongodb.net:27017,cluster0-shard-00-02-remkh.mongodb.net:27017/pos?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
+// mongoose.connect('mongodb://localhost/pos');
+mongoose.connect('mongodb://hacktiv8:hacktiv8Super@cluster0-shard-00-00-remkh.mongodb.net:27017,cluster0-shard-00-01-remkh.mongodb.net:27017,cluster0-shard-00-02-remkh.mongodb.net:27017/pos?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
 
 const app = express();
 

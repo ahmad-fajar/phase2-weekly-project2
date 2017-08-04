@@ -12,8 +12,7 @@ let app = new Vue({
     shop: [],
     items: [],
     search: "",
-    showCart: false,
-    userOnline: ""
+    showCart: false
   },
   methods: {
     addToCart(item) {
@@ -65,14 +64,14 @@ let app = new Vue({
         }
       }
     },
-    checkout() {
-      this.items.forEach(z => {
-        axios.put('', {
-          transactionobjid = trnsctionobjid,
-          itemobjid = z._id
-        });
-      })
-    }
+    // checkout() {
+    //   this.items.forEach(z => {
+    //     axios.put('', {
+    //       transactionobjid = trnsction,
+    //       itemobjid = z._id
+    //     });
+    //   })
+    // }
   },
   computed: {
     itemsInCart () {
@@ -104,7 +103,6 @@ let app = new Vue({
         d.quantity = 0;
       });
       self.shop = result.data;
-      
       // axios.get()
     })
     .catch(err => console.log(err))
