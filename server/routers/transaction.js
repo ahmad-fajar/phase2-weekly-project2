@@ -10,9 +10,11 @@ const ctrl    = require('../controllers/transaction');
 
 // create
 router.post('/', ctrl.create);
+router.post('/add', ctrl.add);
 
 // read
 router.get('/', ctrl.findAll);
+// router.get('/peruser', ctrl.findGroupedPerUser)
 
 // update
 // router.put('/:id', ctrl.update);
