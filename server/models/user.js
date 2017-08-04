@@ -20,7 +20,9 @@ const UserSchema = new Schema({
   role : {
     type     : String,
     required : true
-  }
+  },
+  salt: String
+
 });
 
 const User = mongoose.model('users', UserSchema);
