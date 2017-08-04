@@ -3,6 +3,7 @@ const Transactions = require('../models/transaction');
 
 
 // create
+// bikin transaksi
 exports.create = (req, res) => {
   // console.log(req.body.user);
   // console.log(req.body.item);
@@ -20,6 +21,7 @@ exports.create = (req, res) => {
   });
 };
 
+// update transaksi (nambah item ke dalam list)
 exports.add = (req, res) => {
   Transactions.updateOne({_id : req.body.id}, {$push: {item: req.body.itemId}})
   .then(added => {
@@ -46,15 +48,6 @@ exports.findAll = (req, res) => {
   });
 };
 
-exports.findGroupedPerUser = (req, res) => {
-  // let tes = ['abc']
-  let userList = Transactions.distinct('user')
-  .then(distincted => {
-    console.log('aaa',distincted)
-  })
-  console.log('bbb', userList);
-  res.send(userList)
-}
 
 // update
 // yang mau diupdate apa ya...?
