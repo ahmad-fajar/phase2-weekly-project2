@@ -23,10 +23,6 @@ const item        = require('./routers/item');
 const transaction = require('./routers/transaction');
 const user        = require('./routers/user');
 
-// app.use('/', (req, res) => {
-//   console.log('index page');
-//   res.send('index page');
-// });
 
 app.use('/item', item);
 app.use('/transaction', transaction);
