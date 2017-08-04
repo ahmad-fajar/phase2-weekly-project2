@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="assets/materialize/css/materialize.min.css"  media="screen,projection"/>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="/assets/css/cashier.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+  <div id="app">
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper teal">
+          <a href="#!" class="brand-logo">Logo</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a v-on:click="showCart = !showCart"><button data-target="modal1" class="btn modal-trigger">{{ itemsInCart }} Items</button></a></li>
+            <li><a href="badges.html">Components</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="section section1 teal" style="height: 170px">
+      <h2 class="center-align white-font">MokaPedia</h2>
+    </div>
+    <div class="row">
+
+      <div class="col l7 right-align">
+        <div class="col s4" v-for="s in filteredShop">
+          <div class="card item hoverable">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" >
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">{{ s.name }}<i class="material-icons right">more_vert</i></span>
+              <p>
+                <a class="waves-effect waves-light btn" onclick="Materialize.toast('Added 1 Item to Cart', 4000)" v-on:click="addToCart(s)">Add to Cart
+                  <i class="material-icons right">add_shopping_cart</i>
+                </a>
+              </p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">{{ s.name }}<i class="material-icons right">close</i></span>
+              <p>Category: {{ s.name }} Stock: {{ s.stock }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col l5">
+        <div class="container">
+          <div class="row">
+            <nav>
+              <div class="nav-wrapper teal">
+                  <div class="input-field">
+                    <input id="search" type="search" v-model="search">
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                  </div>
+              </div>
+            </nav>
+          </div>
+          <div class="row">
+            <div class=" valign-wrapper">
+              <h5>Welcome, Cashier</h5>
+              <img src="/assets/img/profile.jpg" alt="User_Image" class="square" style="height: 220px">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+      <div class="modal-content">
+        <div class="row" style="height: 160px">
+          <div class="col l6">
+            <table>
+              <thead>
+                <tr>
+                  <th>Quantity</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in items">
+                  <td><strong>{{ item.quantity }}</strong></td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}</td>
+                  <td><i class="material-icons hoverable" v-on:click="removeFromCart(item)" style="height: 1px">delete</i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col l6">
+            <div class="container">
+              <h3>Total Price</h3>
+              <hr>
+              <h4>Rp.{{ totalPrice | currency }},00</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div><a data-target="modal2" class="modal-action modal-close waves-effect waves-teal btn modal-trigger">Checkout</a></div>
+      </div>
+    </div>
+
+    <div id="modal2" class="modal bottom-sheet">
+      <div class="modal-content">
+        <div class="">
+          <h3>Total Price</h3>
+          <hr>
+          <h4>Rp.{{ totalPrice | currency }},00</h4>
+          <p>Are you sure?</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div>
+          <a data-target="modal1" class="modal-action modal-close waves-effect waves-teal btn modal-trigger">Back</a>
+          <a class="modal-action modal-close waves-effect waves-teal btn red">Ehmm.. not really..</a>
+          <a class="modal-action modal-close waves-effect waves-teal btn">Sure!</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/assets/materialize/js/materialize.min.js"></script>
+    <script src="/assets/js/cashier.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal({});
+      });
+    </script>
+  </body>
+</html>
