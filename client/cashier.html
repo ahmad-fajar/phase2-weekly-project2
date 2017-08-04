@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="assets/materialize/css/materialize.min.css"  media="screen,projection"/>
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="/assets/css/cashier.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
@@ -16,10 +17,10 @@
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper teal">
-          <a href="#!" class="brand-logo">Logo</a>
+          <a href="#!" class="brand-logo">MokaPedia</a>
           <ul class="right hide-on-med-and-down">
             <li><a v-on:click="showCart = !showCart"><button data-target="modal1" class="btn modal-trigger">{{ itemsInCart }} Items</button></a></li>
-            <li><a href="badges.html">Components</a></li>
+            <li><a href="admin.html">Admin</a></li>
           </ul>
         </div>
       </nav>
@@ -38,18 +39,29 @@
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4">{{ s.name }}<i class="material-icons right">more_vert</i></span>
               <p>
-                <a class="waves-effect waves-light btn" onclick="Materialize.toast('Added 1 Item to Cart', 4000)" v-on:click="addToCart(s)">Add to Cart
+                <a class="waves-effect waves-light btn" onclick="hiks()" v-on:click="addToCart(s)">Add to Cart
                   <i class="material-icons right">add_shopping_cart</i>
                 </a>
               </p>
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">{{ s.name }}<i class="material-icons right">close</i></span>
-              <p>Category: {{ s.name }} Stock: {{ s.stock }} </p>
+              <p>Price: {{ s.price }} Stock: {{ s.stock }} </p>
+            </div>
+
+            <div class="card-action">
+              <div>Price: Rp.{{ s.price }},00</div>
+              <div>Stock: Rp.{{ s.stock }},00</div>
             </div>
           </div>
         </div>
       </div>
+
+      <script type="text/javascript">
+        function hiks() {
+          Materialize.toast('Added 1 Item to Cart', 4000)
+        }
+      </script>
 
       <div class="col l5">
         <div class="container">
@@ -126,7 +138,7 @@
         <div>
           <a data-target="modal1" class="modal-action modal-close waves-effect waves-teal btn modal-trigger">Back</a>
           <a class="modal-action modal-close waves-effect waves-teal btn red">Ehmm.. not really..</a>
-          <a class="modal-action modal-close waves-effect waves-teal btn">Sure!</a>
+          <a v-on:click="checkout()" class="modal-action modal-close waves-effect waves-teal btn">Sure!</a>
         </div>
       </div>
     </div>
