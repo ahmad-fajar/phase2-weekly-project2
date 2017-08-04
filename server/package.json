@@ -11,7 +11,10 @@
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.15.3",
+    "dotenv": "^4.0.0",
+    "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.11.5",
+    "mongodb": "^2.2.30",
     "nodemon": "^1.11.0",
     "path": "^0.12.7"
   },
